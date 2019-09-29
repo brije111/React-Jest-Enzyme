@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import CounterProps from './CounterProps';
 
-const Counter = (props) => {
+const Counter = (props:CounterProps) => {
     const [count, setCount] = useState(0);
     return <div>
         <h4 className='title'>{props.title}</h4>
