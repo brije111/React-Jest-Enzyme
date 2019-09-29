@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Counter from './Counter';
 
 it('should render Counter count', ()=>{
-    const wrapper = shallow(<Counter />);
+    const wrapper = shallow(<Counter title="testing" />);
     const countElement = wrapper.find('h4.count');
     const count = countElement.text();
     const buttonElement = wrapper.find('button');
