@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Footer from './Footer';
+import Footer from '../component/counter/Footer';
 
 it('should render customer service phone number', () => {
     const wrapper = shallow(<Footer />);

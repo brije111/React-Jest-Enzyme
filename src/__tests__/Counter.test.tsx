@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Counter from './Counter';
+import Counter from '../component/counter/Counter';
 
 it('should render Counter count', ()=>{
     const wrapper = shallow(<Counter title="testing" />);

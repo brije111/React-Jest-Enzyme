@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import BaseRouter from './BaseRouter';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BaseRouter />, document.getElementById('root'));
 

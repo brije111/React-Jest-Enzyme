@@ -1,13 +1,11 @@
 import React from 'react';
-import Counter from './component/Counter';
-import Footer from './component/Footer';
-import Login from './component/login/Login';
+import Counter from './component/counter/Counter';
+import Footer from './component/counter/Footer';
 
 const App = () => {
     return <div>
         <Counter title='My Counter App' />
         <Footer />
-        <Login />
     </div>
 }
 
