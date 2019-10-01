@@ -1,13 +1,15 @@
 import React from 'react';
 import Login from '../component/login/Login';
 import * as enzyme from 'enzyme';
+import {Button} from 'semantic-ui-react';
 
 describe('<Login />', () => {
-    
+
     let wrapper: enzyme.ShallowWrapper;
-    const setState = jest.fn();
+    let isLogined:boolean;
+    const setisLogined = jest.fn();
     const useStateSpy = jest.spyOn(React, 'useState');
-    useStateSpy.mockImplementation(init => [init, setState]);
+    useStateSpy.mockImplementation(() => [isLogined, setisLogined]);
 
     beforeEach(() => {
         wrapper = enzyme.shallow(<Login />);
@@ -24,9 +26,10 @@ describe('<Login />', () => {
         const passwordInput = wrapper.find('input.input2');
         passwordInput.simulate('change', { target: { value: 'admin123' } });
 
-        wrapper.find('button').simulate('click');
-
-        expect(wrapper.state('isLogined')).toBe(true);
+        const button =  wrapper.find(Button);
+        button.simulate('click');
+        
+        expect(setisLogined).toHaveBeenCalledWith(true);
     })
 
     afterEach(() => {
