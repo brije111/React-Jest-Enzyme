@@ -28,8 +28,10 @@ describe('<Login />', () => {
 
         const button =  wrapper.find(Button);
         button.simulate('click');
+
+        const form = wrapper.find('success');
         
-        expect(setisLogined).toHaveBeenCalledWith(true);
+        expect(form).not.toBeNull();
     })
 
     afterEach(() => {

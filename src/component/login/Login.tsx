@@ -13,7 +13,7 @@ const Login = () => {
     }
 
     return (
-        <Form>
+        <Form className={isLogined?'success':'error'}>
             <Form.Field>
                 <label>Username</label>
                 <input className="input1" type="text" name="username" onChange={(e) => {
