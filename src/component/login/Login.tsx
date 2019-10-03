@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Message } from 'semantic-ui-react';
+import { userLogin } from '../../apis';
+
+export interface LoginRequestModel {
+    email: string;
+    password: string;
+}
+
+export interface LoginResponseModel {
+    token: string;
+}
 
 const Login = () => {
     const [username, setusername] = useState('');
@@ -7,13 +17,18 @@ const Login = () => {
     const [isLogined, setisLogined] = useState(false);
 
     const submitClick = () => {
-        if ((username == "admin@123") && (password == "admin123")) {
-            setisLogined(true);
+        //if ((username == "eve.holt@reqres.in") && (password == "cityslicka")) {
+        const data = {
+            email: username,
+            password: password
         }
+        let user = userLogin(data, setisLogined);
+        console.log(user);
+        //}
     }
 
     return (
-        <Form className={isLogined?'success':'error'}>
+        <Form className={isLogined ? 'success' : 'error'}>
             <Form.Field>
                 <label>Username</label>
                 <input className="input1" type="text" name="username" onChange={(e) => {
@@ -26,6 +41,11 @@ const Login = () => {
                     setpassword(e.target.value);
                 }} value={password} />
             </Form.Field>
+            <Message
+                className={isLogined ? 'success' : 'error'}
+                header='Login Completed'
+                content="You're logedin successfully"
+            />
             <Button primary name="submit" onClick={submitClick}> Submit</Button>
         </Form>
     );
