@@ -25,7 +25,7 @@ describe('<Login />', () => {
         const stateCallback = jest.fn();
         //var mock = new MockAdapter(axios);
         const responseData = { token: '' };
-        mockedAxios.post.mockResolvedValue(responseData);
+        mockedAxios.get.mockResolvedValue(responseData);
         //const consoleLogSpy = jest.spyOn(console, 'log');
         userLogin(data, stateCallback).then(response => {
             expect(response).toEqual(responseData);
