@@ -2,12 +2,10 @@ import React from 'react';
 import Login from '../component/login/Login';
 import * as enzyme from 'enzyme';
 import { Button } from 'semantic-ui-react';
-import axios from 'axios';
+import mockedAxios from 'axios';
 //import MockAdapter from 'axios-mock-adapter';
 import { userLogin } from '../apis';
 
-jest.mock('axios');
-const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('<Login />', () => {
 
@@ -17,7 +15,7 @@ describe('<Login />', () => {
         wrapper = enzyme.shallow(<Login />);
     });
 
-    it('should call a userLogin function', done => {
+    it('should call a userLogin function', async () => {
         const data = {
             email: 'eve.holt@reqres.in',
             password: 'cityslicka'
@@ -25,7 +23,9 @@ describe('<Login />', () => {
         const stateCallback = jest.fn();
         //var mock = new MockAdapter(axios);
         const responseData = { token: '' };
-        mockedAxios.get.mockResolvedValue(responseData);
+
+        mockedAxios.get.mockImplementationOnce(()={})
+        //mockedAxios.post.mockResolvedValue(responseData);
         //const consoleLogSpy = jest.spyOn(console, 'log');
         userLogin(data, stateCallback).then(response => {
             expect(response).toEqual(responseData);
