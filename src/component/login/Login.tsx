@@ -8,13 +8,15 @@ export interface LoginRequestModel {
 }
 
 export interface LoginResponseModel {
-    token: string;
+    message: string;
+    data: object
 }
 
 const Login = () => {
     const [username, setusername] = useState('');
     const [password, setpassword] = useState('');
     const [isLogined, setisLogined] = useState(false);
+    const [response, setResponse] = useState<string | undefined>();
 
     const submitClick = () => {
         //if ((username == "eve.holt@reqres.in") && (password == "cityslicka")) {
@@ -22,7 +24,11 @@ const Login = () => {
             email: username,
             password: password
         }
-        let user = userLogin(data, setisLogined);
+        let user = userLogin(data).then(response => {
+            if (response)
+                setResponse(response.message);
+            else setResponse('error');
+        });
         console.log(user);
         //}
     }
@@ -47,6 +53,7 @@ const Login = () => {
                 content="You're logedin successfully"
             />
             <Button primary name="submit" onClick={submitClick}> Submit</Button>
+            <h1>{response}</h1>
         </Form>
     );
 }
