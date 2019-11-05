@@ -59,15 +59,15 @@ describe('<Login />', () => {
             email: 'brij@hcl.com',
             password: '123456'
         }
-        const responseData = { data: { token: '' } };
+        const responseData = {data:{ message:'success',data: { } }};
         //mock.onPost('https://reqres.in/api/login').reply(200,responseData);
         mockedAxios.post.mockImplementationOnce(() => Promise.resolve(responseData))
 
         const button = wrapper.find(Button);
         button.simulate('click');
 
-        const h1 = wrapper.find('h1');
-        expect(h1.text()).toEqual('success');
+        expect(mockedAxios.post).toHaveBeenCalledTimes(1);
+        expect(mockedAxios.post).toHaveBeenCalledWith('https://simple-login-signup-rest.herokuapp.com/api/user/login',data);
 
     })
 

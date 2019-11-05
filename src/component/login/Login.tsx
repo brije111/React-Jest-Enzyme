@@ -24,12 +24,12 @@ const Login = () => {
             email: username,
             password: password
         }
-        let user = userLogin(data).then(response => {
+        userLogin(data).then(response => {
             if (response)
                 setResponse(response.message);
             else setResponse('error');
+            console.log(response);
         });
-        console.log(user);
         //}
     }
 
